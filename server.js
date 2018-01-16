@@ -9,14 +9,15 @@ app.get('/', (req, res) => {
 });
 
 const root = {
-    friend: () => {
+    friend: (args) => {
         return {
             "id": 2814343,
             "firstName": "Cookie",
             "lastName": "Chen",
             "gender": "Female",
             "language": "English",
-            "email": "cqcmdwym@126.com"
+            "email": "cqcmdwym@126.com",
+            "IDTyped":args.id
         }
     }
 };
