@@ -20,8 +20,8 @@ import {
     getFriend,
     getFriends,
     getUser,
-    getViewer
-} from './database'
+    getViewer,
+} from './database';
 
 const { nodeInterface, nodeField } = nodeDefinitions(
     (globalId) => {
@@ -41,7 +41,7 @@ const { nodeInterface, nodeField } = nodeDefinitions(
         }
         return null;
     }
-)
+);
 
 const GraphQLUser = new GraphQLObjectType({
     name: 'User',
@@ -50,34 +50,34 @@ const GraphQLUser = new GraphQLObjectType({
         friends: {
             type: friendsConnection,
             args: connectionArgs,
-            resolve: (_, args) => connectionFromArray(getFriends(), args)
-        }
+            resolve: (_, args) => connectionFromArray(getFriends(), args),
+        },
     }),
     interface: [nodeInterface]
 });
 
 const GraphQLFriend = new GraphQLObjectType({
-    name: 'friend',
+    name: 'Friend',
     fields: () => ({
         id: globalIdField('Friend'),
         firstName: {
-            type: GraphqlString
+            type: GraphQLString,
         },
         lastName: {
-            type: GraphqlString
+            type: GraphQLString,
         },
         gender: {
-            type: GraphqlString
+            type: GraphQLString,
         },
         language: {
-            type: GraphqlString
+            type: GraphQLString,
         },
         email: {
-            type: GraphqlString
+            type: GraphQLString,
         },
         image: {
-            type: GraphqlString
-        }
+            type: GraphQLString,
+        },
     }),
     interface: [nodeInterface]
 });
@@ -91,9 +91,9 @@ const Query = new GraphQLObjectType({
         node: nodeField,
         viewer: {
             type: GraphQLUser,
-            resolve: () => getViewer()
-        }
-    })
+            resolve: () => getViewer(),
+        },
+    }),
 });
 
 export const schema = new GraphQLSchema({

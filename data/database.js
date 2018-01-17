@@ -1,15 +1,12 @@
 import data from './data.json';
 
-class User { }
-
-class Friend { }
-
+class User {}
+class Friend {}
 
 // Mock data
 const viewer = new User();
 viewer.id = '1';
 viewer.name = 'me';
-
 const friends = data.map((obj) => {
     const friend = new Friend();
     friend.id = require('crypto').randomBytes(10).toString('hex');
@@ -28,5 +25,5 @@ module.exports = {
     getFriend: (id) => friends.find(w => w.id == id),
     getFriends: () => friends,
     User,
-    Friend
-}
+    Friend,
+};
